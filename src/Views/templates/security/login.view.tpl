@@ -1,35 +1,36 @@
-<section class="fullCenter">
-  <form class="grid" method="post" action="index.php?page=sec_login{{if redirto}}&redirto={{redirto}}{{endif redirto}}">
-    <section class="depth-1 row col-12 col-m-8 offset-m-2 col-xl-6 offset-xl-3">
-      <h1 class="col-12">Iniciar Sesión</h1>
-    </section>
-    <section class="depth-1 py-5 row col-12 col-m-8 offset-m-2 col-xl-6 offset-xl-3">
-      <div class="row">
-        <label class="col-12 col-m-4 flex align-center" for="txtEmail">Correo Electrónico</label>
-        <div class="col-12 col-m-8">
-          <input class="width-full" type="email" id="txtEmail" name="txtEmail" value="{{txtEmail}}" />
-        </div>
-        {{if errorEmail}}
+<link rel="stylesheet" type="text/css" href="/{{BASE_DIR}}/public/css/login.css">
+
+<div class="ContenedorLogin" style="display:flex;justify-content:center;align-items:center;height:100vh;">
+  <div class="ContenedorFormulario">
+    <form method="post" action="index.php?page=sec_login{{if redirto}}&redirto={{redirto}}{{endif redirto}}">
+      <div class="Box">
+        <h1>CineMagico</h1>
+        <p>El cine es el arte de hacer posible lo imposible.</p>
+        <div class="Formulario">
+          <label for="txtEmail" style="color: #ffffff;">Correo</label><br>
+          <input class="TextBox" type="email" id="txtEmail" name="txtEmail" value="{{txtEmail}}"><br>
+          {{if errorEmail}}
           <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorEmail}}</div>
-        {{endif errorEmail}}
-      </div>
-      <div class="row">
-        <label class="col-12 col-m-4 flex align-center" for="txtPswd">Contraseña</label>
-        <div class="col-12 col-m-8">
-         <input class="width-full" type="password" id="txtPswd" name="txtPswd" value="{{txtPswd}}" />
+          {{endif errorEmail}}
+
+
+          <label for="txtPswd" style="color: #ffffff;">Contraseña</label><br>
+          <input type="password" class="TextBox" autocomplete="off" id="txtPswd" name="txtPswd" value="{{txtPswd}}"><br>
+          {{if errorPswd}}
+          <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorPswd}}</div>
+          {{endif errorPswd}}
+          {{if generalError}}
+          <div class="row">
+            {{generalError}}
+          </div>
+          {{endif generalError}}
+          <a style="color: rgb(255, 255, 255);" href="#">Olvidaste la contraseña?</a>
         </div>
-        {{if errorPswd}}
-        <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorPswd}}</div>
-        {{endif errorPswd}}
-      </div>
-    {{if generalError}}
-      <div class="row">
-        {{generalError}}
-      </div>
-    {{endif generalError}}
-    <div class="row right flex-end px-4">
-      <button class="primary" id="btnLogin" type="submit">Iniciar Sesión</button>
-    </div>
-    </section>
-  </form>
-</section>
+  
+        <input type="submit" class="Boton" id="btnLogin" value="Entrar">
+        <hr>
+    </form>
+    <p style="color: rgb(255, 255, 255);">¿No tienes una cuenta? <a style="color: #ffffff; text-decoration:underline;" id='Crear'
+        onclick="Registro()">Registrate</a></p>
+  </div>
+</div>
