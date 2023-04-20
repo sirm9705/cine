@@ -9,13 +9,17 @@ class Checkout extends PublicController{
     {
         $viewData = array();
         if ($this->isPostBack()) {
+            $Titulo = $_POST['Titulo'];
+            $Autor = $_POST['Autor'];
+            $Idioma = $_POST['Idioma'];
+            $Genero = $_POST['Genero'];
+            $Precio = $_POST['Precio'];
             $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
                 "test".(time() - 10000000),
-                "http://localhost/mvco/index.php?page=checkout_error",
-                "http://localhost/mvco/index.php?page=checkout_accept"
+                "http://localhost/ProyectoCines/index.php?page=checkout_error",
+                "http://localhost/ProyectoCines/index.php?page=checkout_accept"
             );
-            $PayPalOrder->addItem("Test", "TestItem1", "PRD1", 100, 15, 1, "DIGITAL_GOODS");
-            $PayPalOrder->addItem("Test 2", "TestItem2", "PRD2", 50, 7.5, 2, "DIGITAL_GOODS");
+            $PayPalOrder->addItem($Titulo, $Autor, $Idioma, $Genero, $Precio, 1 , 1);
             $response = $PayPalOrder->createOrder();
             $_SESSION["orderid"] = $response[1]->result->id;
             \Utilities\Site::redirectTo($response[0]->href);
